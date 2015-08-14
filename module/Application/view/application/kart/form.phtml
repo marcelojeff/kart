@@ -1,0 +1,15 @@
+<?php
+$title = 'Kart';
+$this->headTitle($title);
+$form->prepare();
+?>
+<h1><?= $this->escapeHtml($title); ?></h1>
+<?= $this->form()->openTag($form); ?>
+    <div class="form-group">
+        <?= $this->formCollection($form); ?>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="reset" class="btn btn-warning">Limpar</button>
+    </div>
+<?= $this->form()->closeTag(); ?>

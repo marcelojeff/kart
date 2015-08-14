@@ -9,6 +9,7 @@ nbproject
 .settings
 # Composer files
 composer.phar
+composer.lock
 vendor/
 
 # Local configs
