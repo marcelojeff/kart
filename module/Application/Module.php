@@ -11,6 +11,7 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Application\Gateway\Karts;
 
 class Module
 {
@@ -35,5 +36,15 @@ class Module
                 ),
             ),
         );
+    }
+    public function getServiceConfig()
+    {
+        return [
+            'factories' => [
+                'karts' => function ($sm) {
+                    return new Karts($sm->get('mongo'));
+                }
+            ]
+        ];
     }
 }
