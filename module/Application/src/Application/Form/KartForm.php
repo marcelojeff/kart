@@ -9,7 +9,11 @@ class KartForm extends Form
     {
         parent::__construct($name);
         $this->add([
-            'name' => 'id',
+            'name' => 'csrf',
+            'type' => 'Csrf'
+        ]);
+        $this->add([
+            'name' => '_id',
             'type' => 'Hidden',
         ]);
         $this->add([

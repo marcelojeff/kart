@@ -11,21 +11,36 @@ class KartController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();
+        $karts = $this->serviceLocator->get('karts')->findAll();
+        $viewModel = new ViewModel();
+        $viewModel->setVariables(['karts' => $karts]);
+        return $viewModel;
     }
 
-    public function createAction()
+    public function saveAction()
     {
         $form = $this->getForm();
         $request = $this->getRequest();
+        $id = $this->params('id');
         if($request->isPost()){
             $data = $request->getPost();
             $form->setData($data);
             $kart = new Kart();
             $form->setInputFilter($kart->getInputFilter());
             if($form->isValid()){
-                
+                try {
+                    $kart->exchangeArray($form->getData());
+                    $this->serviceLocator->get('karts')->save($kart->getArrayCopy());
+                } catch (\Exception $e) {
+                    
+                }
+                return $this->redirect()->toRoute('application/default', [
+                    'controller' => 'kart'
+                ]);
             }
+        } elseif($id) {
+            $kartData = $this->serviceLocator->get('karts')->findById($id);
+            $form->setData($kartData);
         }
         $viewModel = new ViewModel();
         $viewModel->setVariables([
@@ -37,6 +52,10 @@ class KartController extends AbstractActionController
 
     public function deleteAction() {
         $id = $this->params('id');
+        try {
+            $this->serviceLocator->get('karts')->delete($id);
+        } catch (\Exception $e) {
+        }
         return $this->redirect()->toRoute('application/default', [
             'controller' => 'kart'
         ]);
