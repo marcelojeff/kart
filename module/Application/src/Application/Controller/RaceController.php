@@ -3,18 +3,18 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Application\Form\KartForm;
-use Application\Model\Kart;
+use Application\Model\Race;
+use Application\Form\RaceForm;
 
-class KartController extends AbstractActionController
+class RaceController extends AbstractActionController
 {
 
     public function indexAction()
     {
-        $karts = $this->serviceLocator->get('karts')->findAll();
+        $races = $this->serviceLocator->get('races')->findAll();
         $viewModel = new ViewModel();
         $viewModel->setVariables([
-            'karts' => $karts
+            'races' => $races
         ]);
         return $viewModel;
     }
@@ -27,26 +27,26 @@ class KartController extends AbstractActionController
         if ($request->isPost()) {
             $data = $request->getPost();
             $form->setData($data);
-            $kart = new Kart();
+            $kart = new Race();
             $form->setInputFilter($kart->getInputFilter());
             if ($form->isValid()) {
                 try {
                     $kart->exchangeArray($form->getData());
-                    $this->serviceLocator->get('karts')->save($kart->getArrayCopy());
+                    $this->serviceLocator->get('races')->save($kart->getArrayCopy());
                 } catch (\Exception $e) {}
                 return $this->redirect()->toRoute('application/default', [
-                    'controller' => 'kart'
+                    'controller' => 'race'
                 ]);
             }
         } elseif ($id) {
-            $kartData = $this->serviceLocator->get('karts')->findById($id);
-            $form->setData($kartData);
+            $data = $this->serviceLocator->get('races')->findById($id);
+            $form->setData($data);
         }
         $viewModel = new ViewModel();
         $viewModel->setVariables([
             'form' => $form
         ]);
-        $viewModel->setTemplate('application/kart/form.phtml');
+        $viewModel->setTemplate('application/race/form.phtml');
         return $viewModel;
     }
 
@@ -54,15 +54,15 @@ class KartController extends AbstractActionController
     {
         $id = $this->params('id');
         try {
-            $this->serviceLocator->get('karts')->delete($id);
+            $this->serviceLocator->get('races')->delete($id);
         } catch (\Exception $e) {}
         return $this->redirect()->toRoute('application/default', [
-            'controller' => 'kart'
+            'controller' => 'race'
         ]);
     }
 
     private function getForm()
     {
-        return new KartForm();
+        return new RaceForm();
     }
 }

@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Numero</th>
+            <th>Nome</th>
+            <th>Ações</th>
+            <th>
+                <a href="<?= $this->url('application/default', ['controller' => 'race',
+                    'action' => 'save'])?>" class="btn btn-default btn-sm pull-right">
+                    <span class="glyphicon glyphicon-plus"></span> Novo</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($races as $race): ?>
+        <tr>
+            <td><?= $race->number ?></td>
+            <td><?= $race->name ?></td>
+            <td colspan="2">
+                <a href="<?= $this->url('application/default', ['controller' => 'race',
+                    'action' => 'save', 'id' => $race->_id->{'$id'}])?>" class="btn btn-primary btn-xs">
+                    <span class="glyphicon glyphicon-edit"></span> Editar</a>
+                <a href="<?= $this->url('application/default', ['controller' => 'race',
+                    'action' => 'delete', 'id' => $race->_id->{'$id'}])?>"
+                    class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Excluir
+                </a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

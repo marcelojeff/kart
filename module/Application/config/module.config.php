@@ -65,7 +65,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Racing' => 'Application\Controller\RacingController',
+            'Application\Controller\Race' => 'Application\Controller\RaceController',
             'Application\Controller\Kart' => 'Application\Controller\KartController'
         ),
     ),

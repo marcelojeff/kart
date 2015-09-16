@@ -12,6 +12,7 @@ namespace Application;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Application\Gateway\Karts;
+use Application\Gateway\Races;
 
 class Module
 {
@@ -43,6 +44,9 @@ class Module
             'factories' => [
                 'karts' => function ($sm) {
                     return new Karts($sm->get('mongo'));
+                },
+                'races' => function ($sm) {
+                return new Races($sm->get('mongo'));
                 }
             ]
         ];
