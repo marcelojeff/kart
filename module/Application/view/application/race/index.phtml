@@ -1,7 +1,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Numero</th>
             <th>Nome</th>
             <th>Ações</th>
             <th>
@@ -14,11 +13,14 @@
     <tbody>
         <?php foreach ($races as $race): ?>
         <tr>
-            <td><?= $race->number ?></td>
             <td><?= $race->name ?></td>
             <td colspan="2">
                 <a href="<?= $this->url('application/default', ['controller' => 'race',
-                    'action' => 'save', 'id' => $race->_id->{'$id'}])?>" class="btn btn-primary btn-xs">
+                    'action' => 'simulation-modal', 'id' => $race->_id->{'$id'}])?>"
+                    data-type="simulation-btn" class="btn btn-primary btn-xs">
+                    <span class="glyphicon glyphicon-road"></span> Simulação</a>
+                <a href="<?= $this->url('application/default', ['controller' => 'race',
+                    'action' => 'save', 'id' => $race->_id->{'$id'}])?>" class="btn btn-default btn-xs">
                     <span class="glyphicon glyphicon-edit"></span> Editar</a>
                 <a href="<?= $this->url('application/default', ['controller' => 'race',
                     'action' => 'delete', 'id' => $race->_id->{'$id'}])?>"
@@ -29,3 +31,9 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+<div class="modal fade" data-type="simulation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-type="modal-content">
+    </div>
+  </div>
+</div>

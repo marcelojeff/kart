@@ -27,12 +27,12 @@ class RaceController extends AbstractActionController
         if ($request->isPost()) {
             $data = $request->getPost();
             $form->setData($data);
-            $kart = new Race();
-            $form->setInputFilter($kart->getInputFilter());
+            $race = new Race();
+            $form->setInputFilter($race->getInputFilter());
             if ($form->isValid()) {
                 try {
-                    $kart->exchangeArray($form->getData());
-                    $this->serviceLocator->get('races')->save($kart->getArrayCopy());
+                    $race->exchangeArray($form->getData());
+                    $this->serviceLocator->get('races')->save($race->getArrayCopy());
                 } catch (\Exception $e) {}
                 return $this->redirect()->toRoute('application/default', [
                     'controller' => 'race'
@@ -59,6 +59,13 @@ class RaceController extends AbstractActionController
         return $this->redirect()->toRoute('application/default', [
             'controller' => 'race'
         ]);
+    }
+
+    public function simulationModalAction() {
+        $request = $this->getRequest();
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal($request->isXmlHttpRequest());
+        return $viewModel;
     }
 
     private function getForm()

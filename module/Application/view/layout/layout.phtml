@@ -14,6 +14,7 @@
                         ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
         <!-- Scripts -->
         <?= $this->headScript()
+            ->prependFile($this->basePath('js/global.js'))
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery.min.js'))
             ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
@@ -40,7 +41,7 @@
                             <a href="<?= $this->url('application/default', ['controller' => 'kart']) ?>"><?= $this->translate('Karts') ?></a>
                         </li>
                         <li>
-                            <a href="<?= $this->url('application/default', ['controller' => 'racing']) ?>"><?= $this->translate('Corridas') ?></a>
+                            <a href="<?= $this->url('application/default', ['controller' => 'race']) ?>"><?= $this->translate('Corridas') ?></a>
                         </li>
                     </ul>
                 </div><!--/.nav-collapse -->
