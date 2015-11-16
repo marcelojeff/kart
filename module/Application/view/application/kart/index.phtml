@@ -21,7 +21,7 @@
                     'action' => 'save', 'id' => $kart->_id->{'$id'}])?>" class="btn btn-primary btn-xs">
                     <span class="glyphicon glyphicon-edit"></span> Editar</a>
                 <a href="<?= $this->url('application/default', ['controller' => 'kart',
-                    'action' => 'delete', 'id' => $kart->_id->{'$id'}])?>"
+                    'action' => 'delete', 'id' => $kart->_id->{'$id'}])?>" data-type="delete-btn"
                     class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Excluir
                 </a>
             </td>

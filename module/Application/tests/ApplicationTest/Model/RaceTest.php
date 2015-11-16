@@ -3,61 +3,58 @@ namespace ApplicationTest\Model;
 
 use PHPUnit_Framework_TestCase;
 use Application\Model\Race;
+use Application\Model\Kart;
 
 class RaceTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testSetKart()
+    public function testAddKart()
     {
         $race = new Race();
-        $kart = ['_id' => 'abcdefghijklmnopqrstuvx1', 'number' => 12, 'name' => 'fobarbaz'];
-        $race->setKart($kart);
+        $kart = new Kart();
+        $race->addKart($kart);
         $kartsList = $race->getKarts();
-        $this->assertTrue($kartsList[0] === $kart);
-        $kart['number'] = 13;
-        $race->setKart($kart);
+        $this->assertCount(1, $kartsList);
+        $this->assertEquals($kart, $kartsList[0]);
+        $kart2 = new Kart();
+        $race->addKart($kart2);
         $kartsList = $race->getKarts();
-        $this->assertTrue($kartsList[1] === $kart);
+        $this->assertCount(2, $kartsList);
+        $this->assertEquals($kart2, $kartsList[1]);
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage \Application\Model\Race::INVALID_KART_FORMAT
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage \Application\Model\Race::NONE_KART_FOR_RACE
      */
-    public function testSetKartTypeFail()
-    {
+    public function testSimulateFailNoneKart() {
         $race = new Race();
-        $race->setKart('foobar');
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage \Application\Model\Race::INVALID_KART_FORMAT
-     */
-    public function testSetKartArrayFormatFail()
-    {
-        $race = new Race();
-        $race->setKart([0 , 2]);
-    }
-
-    public function testGetRaceResults() {
-        $karts = [
-            [
-                '_id' => 'abcdefghijklmnopqrstuvx1',
-                'number' => 12,
-                'name' => 'fobarbaz'
-            ],
-            [
-                '_id' => 'abcdefghijklmnopqrstuvx2',
-                'number' => 13,
-                'name' => 'fobarbax'
-            ]
-        ];
-        $race = new Race();
-        $race->setKart($karts[0]);
-        $race->setKart($karts[1]);
         $race->simulate();
+    }
+
+    public function testSimulate() {
+        $race = new Race();
+        $race->addKart(new Kart());
+        $race->addKart(new Kart());
+        $karts = $race->simulate();
+        $this->assertTrue($karts[0]->getLapTime()+1500 >= $karts[1]->getLapTime());
+        return $race;
+    }
+
+    /**
+     * @depends testSimulate
+     */
+    public function testGetRaceResults($race) {
         $results = $race->getResults();
         $this->assertCount(2, $results);
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage \Application\Model\Race::RACE_NOT_SIMULATED
+     */
+    public function testGetRaceResultsFail() {
+        $race = new Race();
+        $results = $race->getResults();
     }
 }
