@@ -11,11 +11,13 @@ class RaceTest extends PHPUnit_Framework_TestCase
     public function testAddKart()
     {
         $race = new Race();
+        
         $kart = new Kart();
         $race->addKart($kart);
         $kartsList = $race->getKarts();
         $this->assertCount(1, $kartsList);
         $this->assertEquals($kart, $kartsList[0]);
+
         $kart2 = new Kart();
         $race->addKart($kart2);
         $kartsList = $race->getKarts();
@@ -69,4 +71,5 @@ class RaceTest extends PHPUnit_Framework_TestCase
       $race->simulate();
       $race->simulate();
     }
+    
 }

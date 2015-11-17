@@ -24,13 +24,14 @@
                     <span class="glyphicon glyphicon-edit"></span> Editar</a>
                 <a href="<?= $this->url('application/default', ['controller' => 'race',
                     'action' => 'delete', 'id' => $race->_id->{'$id'}])?>"
-                    class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Excluir
+                    class="btn btn-danger btn-xs btn-remove-race"><span class="glyphicon glyphicon-remove"></span> Excluir
                 </a>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
 <div class="modal fade" data-type="simulation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content" data-type="modal-content">
