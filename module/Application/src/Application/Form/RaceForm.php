@@ -27,16 +27,5 @@ class RaceForm extends Form
                 'id' => 'name'
             ]
         ]);
-        $this->add([
-            'name' => 'track',
-            'type' => 'Text',
-            'options' => [
-                'label' => 'Circuito',
-            ],
-            'attributes' => [
-                'class' => 'form-control',
-                'id' => 'track'
-            ]
-        ]);
     }
 }

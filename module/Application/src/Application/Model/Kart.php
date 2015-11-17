@@ -23,13 +23,7 @@ class Kart extends AbstractModel
      */
     public function setLapTime($time)
     {
-        if(!is_int($time)){
-            throw new \InvalidArgumentException(self::LAP_TIME_TYPE);
-        }
-        if (0 > $time || $time > 120000) {
-            throw new \InvalidArgumentException(self::LAP_TIME_VALUE);
-        }
-        $this->lapTime = $time;
+
     }
 
     /**
@@ -38,6 +32,6 @@ class Kart extends AbstractModel
      */
     public function getLapTime()
     {
-        return $this->lapTime;
+        
     }
 }

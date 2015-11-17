@@ -7,7 +7,4 @@ $(document).ready(function(){
             modalContainer.modal('show');
         }, 'html');
     });
-    $('a[data-type="delete-btn"]').click(function(e){
-        return confirm('Deseja realmente excluir esse registro?');
-    });
 });

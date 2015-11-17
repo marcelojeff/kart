@@ -57,4 +57,16 @@ class RaceTest extends PHPUnit_Framework_TestCase
         $race = new Race();
         $results = $race->getResults();
     }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage \Application\Model\Race::RACE_ALREADY_SIMULATED
+     */
+    public function testSimulateAlreadyDone() {
+      $race = new Race();
+      $race->addKart(new Kart());
+      $race->addKart(new Kart());
+      $race->simulate();
+      $race->simulate();
+    }
 }

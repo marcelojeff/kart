@@ -2,7 +2,6 @@
     <thead>
         <tr>
             <th>Nome</th>
-            <th>Circuito</th>
             <th>Ações</th>
             <th>
                 <a href="<?= $this->url('application/default', ['controller' => 'race',
@@ -15,7 +14,6 @@
         <?php foreach ($races as $race): ?>
         <tr>
             <td><?= $race->name ?></td>
-            <td><?= $race->track ?></td>
             <td colspan="2">
                 <a href="<?= $this->url('application/default', ['controller' => 'race',
                     'action' => 'simulation-modal', 'id' => $race->_id->{'$id'}])?>"
@@ -25,7 +23,7 @@
                     'action' => 'save', 'id' => $race->_id->{'$id'}])?>" class="btn btn-default btn-xs">
                     <span class="glyphicon glyphicon-edit"></span> Editar</a>
                 <a href="<?= $this->url('application/default', ['controller' => 'race',
-                    'action' => 'delete', 'id' => $race->_id->{'$id'}])?>" data-type="delete-btn"
+                    'action' => 'delete', 'id' => $race->_id->{'$id'}])?>"
                     class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Excluir
                 </a>
             </td>
