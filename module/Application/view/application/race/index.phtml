@@ -2,6 +2,7 @@
     <thead>
         <tr>
             <th>Nome</th>
+            <th>Kartódromo</th>
             <th>Ações</th>
             <th>
                 <a href="<?= $this->url('application/default', ['controller' => 'race',
@@ -14,6 +15,7 @@
         <?php foreach ($races as $race): ?>
         <tr>
             <td><?= $race->name ?></td>
+            <td><?= $race->kartodromo ?></td>
             <td colspan="2">
                 <a href="<?= $this->url('application/default', ['controller' => 'race',
                     'action' => 'simulation-modal', 'id' => $race->_id->{'$id'}])?>"

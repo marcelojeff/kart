@@ -16,6 +16,8 @@ class Kart extends AbstractModel
         'number' => [self::INT, [1, 3], true]
     ];
 
+
+
     /**
      * Set lap time in ms
      * @param int $time

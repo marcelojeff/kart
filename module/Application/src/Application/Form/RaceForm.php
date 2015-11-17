@@ -27,5 +27,16 @@ class RaceForm extends Form
                 'id' => 'name'
             ]
         ]);
+        $this->add([
+            'name' => 'kartodromo',
+            'type' => 'Text',
+            'options' => [
+                'label' => 'kartódromo',
+            ],
+            'attributes' => [
+                'class' => 'form-control',
+                'id' => 'kartódromo'
+            ]
+        ]);
     }
 }

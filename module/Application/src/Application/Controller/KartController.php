@@ -11,6 +11,7 @@ class KartController extends AbstractActionController
 
     public function indexAction()
     {
+
         $karts = $this->serviceLocator->get('karts')->findAll();
         $viewModel = new ViewModel();
         $viewModel->setVariables([
