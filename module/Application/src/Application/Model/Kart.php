@@ -25,12 +25,12 @@ class Kart extends AbstractModel
     {
         if(is_numeric($time)){
             if( $time > 20000 ){
-                $laptime = $time;
+                $this->laptime = $time;
             }else{
-                throw new Exception(LAP_TIME_VALUE, 1);
+                throw new \Exception(self::LAP_TIME_VALUE, 1);
             }
         }else{
-            throw new Exception(LAP_TIME_TYPE, 1);
+            throw new \Exception(self::LAP_TIME_TYPE, 1);
         }
     }
 
@@ -40,10 +40,10 @@ class Kart extends AbstractModel
      */
     public function getLapTime()
     {
-        if ($laptime > 20000) {
-            return $laptime;
+        if ($this->laptime > 20000) {
+            return $this->laptime;
         }else{
-            throw new Exception(LAP_TIME_VALUE, 1);
+            throw new \Exception(self::LAP_TIME_VALUE, 1);
         }
     }
 }

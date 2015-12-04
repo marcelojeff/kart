@@ -62,10 +62,24 @@ class RaceController extends AbstractActionController
     }
 
     public function simulationModalAction() {
-        $request = $this->getRequest();
+        $karts = $this->serviceLocator->get('karts')->findAll();
         $viewModel = new ViewModel();
+        $viewModel->setVariables([
+            'karts' => $karts
+        ]);
+
+        $request = $this->getRequest();
         $viewModel->setTerminal($request->isXmlHttpRequest());
         return $viewModel;
+    }
+
+    public function addKart(){
+        $kart = $karts = $this->serviceLocator->get('karts')->find();
+
+    }
+
+    public function doSimulation(){
+        
     }
 
     private function getForm()
