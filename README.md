@@ -30,6 +30,7 @@ Com relação à lógica de negócio, existem testes unitários que devem servir
 * A simulação de uma corrida deve consistir em estabelecer a posição final que cada kart “terminou” a corrida, e computar a melhor volta de cada um. Tanto a posição, quanto a melhor volta podem ser estabelecidas de forma randômica, apenas respeitando a regra de que o kart com a pior volta deve ser no máximo 15 segundos mais lento que o kart com a melhor volta, e dois karts não podem ter a mesma posição, ou seja, não pode haver empate. Para facilitar a implementação considere que a melhor volta nunca terá um tempo menor que 2 minutos, e cada kart fará apenas uma volta, ou seja, a melhor volta de um kart é a única volta que ele fez.
 * Ao simular uma corrida novamente os karts devem manter as posições da simulação anterior.
 
+Atenção, as telas de simulação não são necessárias, apenas o desenvolvimento das funcções. Ou seja, se os testes rodarem essa etapa estará concluída.
 ### Demais aspectos
 
 * Padrão de codificação PSR-2
