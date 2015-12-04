@@ -7,4 +7,18 @@ $(document).ready(function(){
             modalContainer.modal('show');
         }, 'html');
     });
+
+    $('.btn-remove-kart').click(function(){
+        if (! confirm('Tem certeza que deseja excluir esse kart?'))
+        {
+            return false;       
+        }
+    });
+    $('.btn-remove-race').click(function(){
+    	if (! confirm('Tem certeza que deseja excluir essa corrida?'))
+    	{
+    		return false;		
+    	}
+    });
+
 });

@@ -36,6 +36,7 @@ class KartTest extends PHPUnit_Framework_TestCase
         $kart->setLapTime(-1);
     }
 
+
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage \Application\Model\Kart::LAP_TIME_VALUE
