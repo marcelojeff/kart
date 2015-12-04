@@ -23,6 +23,15 @@ class Kart extends AbstractModel
      */
     public function setLapTime($time)
     {
+        if(is_numeric($time){
+            if( $time > 20000 ){
+                $laptime = $time;
+            }else{
+                throw new Exception(LAP_TIME_VALUE, 1);
+            }
+        }else{
+            throw new Exception(LAP_TIME_TYPE, 1);
+        }
 
     }
 
@@ -32,6 +41,10 @@ class Kart extends AbstractModel
      */
     public function getLapTime()
     {
-        
+        if ($laptime > 20000) {
+            return $laptime;
+        }else{
+            throw new Exception(LAP_TIME_VALUE, 1);
+        }
     }
 }
